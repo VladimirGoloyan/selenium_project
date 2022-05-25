@@ -2,31 +2,25 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactUsTest {
     public static org.openqa.selenium.WebDriver driver;
 
-    private void waiting(){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void waiting() {
+        new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
-    private void waiting(int milliseconds){
+    private void waiting(int seconds) {
 
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
 
@@ -121,7 +115,7 @@ public class ContactUsTest {
         waiting();
 
         driver.findElement(By.xpath(accountVerifyXpath)).click();
-        waiting(7000);
+        waiting(7);
 
         WebElement popUp = driver.findElement(By.xpath(popUpXpath));
         Assert.assertTrue(popUp.isDisplayed());

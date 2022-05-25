@@ -3,28 +3,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class JobsTest {
     public static org.openqa.selenium.WebDriver driver;
 
     private void waiting() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
-    private void waiting(int milliseconds) {
+    private void waiting(int seconds) {
 
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
 

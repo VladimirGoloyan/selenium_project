@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CategoryTest {
@@ -14,20 +15,12 @@ public class CategoryTest {
 
 
     private void waiting() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
-    private void waiting(int milliseconds) {
+    private void waiting(int seconds) {
 
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
     @BeforeTest
@@ -68,7 +61,7 @@ public class CategoryTest {
         WebElement search = driver.findElement(By.xpath(searchXpath));
         search.sendKeys("Burger");
 
-        waiting(4000);
+        waiting(4);
 
         List<WebElement> forms = driver.findElements(By.className("promotions-frame"));
         count = forms.size();
